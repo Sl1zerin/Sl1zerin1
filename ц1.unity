@@ -600,6 +600,7 @@ MonoBehaviour:
   pivot: {fileID: 0}
   Character: {fileID: 0}
   mTransform: {fileID: 0}
+  targetLook: {fileID: 0}
   characterStatus: {fileID: 0}
   characterInput: {fileID: 0}
   cameraConfig: {fileID: 0}
@@ -613,6 +614,7 @@ MonoBehaviour:
   smoothYVelocity: 0
   lookAngle: 0
   titlAngle: 0
+  t: 0
 --- !u!1 &167764259
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +958,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4008940619111138, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4284736011033704, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.x
@@ -968,7 +970,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4284736011033704, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4903764076482544, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.x
@@ -980,7 +982,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4903764076482544, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4134904555138300, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.x
@@ -992,7 +994,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4134904555138300, guid: 02429a2ae75af47418882777f6cbea50, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 199980806022615110, guid: 02429a2ae75af47418882777f6cbea50,
         type: 2}
@@ -1330,12 +1332,12 @@ MonoBehaviour:
   SpeedOnWallDown: 0
   getUp: 0
   getDown: 0
+  CheckCliping: {fileID: 0}
   OnWall: 0
   OnWallJump: 0
   isJump: 0
   isUp: 0
   isJumpDown: 0
-  DownInt: 0
   DownJump: 0
   isDown: 0
   isFlyClimping: 0
@@ -1349,11 +1351,14 @@ MonoBehaviour:
   UpWallAnimation: 0
   hangJumpAnimation: 0
   HaveOnWall: 0
+  DownInit: 0
   offSetFromWall: 0.3
+  offSetWihtOutWall: 0
   OnWallRotation: 0
   offSetOnWall: 0
   boxPosOnGround: 0
   boxPosOnWall: 0
+  WorH: 0
 --- !u!114 &430825398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,8 +1373,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGroundet: 0
   isSprint: 0
-  isBattle: 0
-  isAttack: 0
+  isAiming: 0
+  isAimingMove: 0
+  isShoot: 0
   isJump: 0
   isCrouch: 0
   OnWall: 0
@@ -1406,6 +1412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c372cd2f9c62414b91f11593fbc1769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   Vertical: 0
   Horizontal: 0
   MouseX: 0
@@ -1415,9 +1422,13 @@ MonoBehaviour:
   timeJump: 0
   isJumpDown: 0
   Mobile: 0
+  AimingDebug: 0
   FixedMouse: 0
   moveJoystick: {fileID: 0}
   touchFild: {fileID: 0}
+  SelWeapon: 1
+  opportunityToAim: 0
+  distance: 0
 --- !u!114 &430825401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,7 +1874,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1569881721
+  randomSeed: 865420669
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6489,7 +6500,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 203976691
+  randomSeed: -891175777
   InitialModule:
     serializedVersion: 3
     enabled: 1
